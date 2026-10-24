@@ -43,10 +43,18 @@ ReadySet/
 
 * **Tests Unitaires Domaine (`:core:domain`)** : JUnit 5 + AssertJ sans mock via des Fake Repositories purs.
 * **Tests Unitaires ViewModel (`:app`)** : Test des transitions d'états réactifs via **Turbine** et `StandardTestDispatcher`.
+* **Tests IHM Compose sur JVM (`:app`)** : Tests des composants et interactions Compose sans émulateur via **Robolectric** (`TripDetailScreenTest`, `TripListScreenTest`).
+* **Tests E2E Déclaratifs (Maestro)** : Automatisation des parcours utilisateurs complets (`.maestro/01_create_trip_and_pack.yaml`).
 
-Pour lancer les tests unitaires :
+### Lancer les tests unitaires et IHM Compose (local JVM) :
 ```bash
 ./gradlew test
+```
+
+### Lancer les tests E2E avec Maestro (sur émulateur ou device) :
+```bash
+# Installation de Maestro : https://maestro.mobile.dev/
+maestro test .maestro/01_create_trip_and_pack.yaml
 ```
 
 ---

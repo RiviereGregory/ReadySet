@@ -1,0 +1,50 @@
+appId: fr.riverjach.readyset
+---
+# Scénario E2E Maestro : Création d'un voyage depuis un template et préparation des affaires
+- launchApp:
+    clearState: true
+
+# 1. Vérification de l'écran d'accueil vide
+- assertVisible: "ReadySet 🧳"
+- assertVisible: "Aucun voyage prévu"
+
+# 2. Ouverture de la création de voyage
+- tapOn:
+    contentDescription: "Créer un nouveau voyage"
+- assertVisible: "Nouveau voyage"
+- assertVisible: "Weekend Escapade (2-3 jours)"
+
+# 3. Saisie des informations
+- tapOn: "Nom du voyage (ex: Weekend à Rome)*"
+- inputText: "Weekend à Annecy"
+- tapOn: "Destination (optionnelle)"
+- inputText: "Haute-Savoie"
+
+# 4. Validation de la création
+- tapOn: "Créer"
+
+# 5. Vérification dans la liste
+- assertVisible: "Weekend à Annecy"
+- assertVisible: "Haute-Savoie"
+
+# 6. Ouverture des détails du voyage
+- tapOn: "Weekend à Annecy"
+- assertVisible: "Rechercher une affaire..."
+- assertVisible: "0 sur 17 emballés"
+- assertVisible: "0 %"
+
+# 7. Recherche d'une affaire
+- tapOn: "Rechercher une affaire..."
+- inputText: "Brosse"
+- assertVisible: "Brosse à dents & Dentifrice"
+
+# 8. Cocher une affaire
+- tapOn: "Brosse à dents & Dentifrice"
+- assertVisible: "1 sur 17 emballés"
+
+# 9. Effacer la recherche et retour accueil
+- tapOn:
+    contentDescription: "Effacer la recherche"
+- tapOn:
+    contentDescription: "Retour"
+- assertVisible: "ReadySet 🧳"
